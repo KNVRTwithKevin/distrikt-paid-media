@@ -135,7 +135,30 @@
   .light .lede-2 { font-weight: 600; color: var(--ink); font-size: 16px; margin-top: 4px; }
 
   /* Journey cards */
-  .journey { display: flex; align-items: stretch; gap: 0; margin-top: 40px; }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .eyebrow .vs {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--ink);
+  }
+  .eyebrow .need { color: var(--purple-deep); }
+  .lede strong { color: var(--ink); font-weight: 600; }
+  .journey { display: flex; align-items: center; gap: 0; margin-top: 40px; }
   .j-card {
     flex: 1;
     background: #fff;
@@ -152,23 +175,32 @@
     border-top: 6px solid #6f6784;
     box-shadow: 0 8px 30px rgba(30, 24, 48, 0.5), 0 0 22px rgba(110, 100, 140, 0.28);
   }
+  .j-card.legacy { flex: 1.08; }
   .j-card.here {
-    flex: 1.35;
-    margin: -18px 0;
+    flex: 1.5;
     background: #fff;
     border: 2px solid var(--purple);
     border-top: 8px solid var(--purple);
     box-shadow: 0 10px 34px rgba(123, 59, 233, 0.3), 0 0 30px rgba(157, 140, 240, 0.25);
-    padding: 26px 22px 18px;
+    padding: 26px 24px 20px;
+  }
+  .j-card.ghost {
+    flex: 0.95;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1.5px dashed #c4bade;
+    border-top: 1.5px dashed #c4bade;
+    box-shadow: none;
+    padding: 18px 18px 16px;
   }
   .j-arrow {
     align-self: center;
     padding: 0 7px;
-    color: var(--purple);
+    color: #c9c0e8;
     font-size: 24px;
     font-weight: 700;
     flex: 0 0 auto;
   }
+  .j-arrow.solid { color: var(--purple); }
   .j-pill {
     display: inline-block;
     align-self: flex-start;
@@ -235,6 +267,95 @@
   }
   .j-card.legacy li::before { background: #8d85a3; }
   .j-card li strong { color: var(--ink); }
+  .j-pill.ghostpill {
+    background: transparent;
+    border: 1px solid #b9aede;
+    color: #8d84a8;
+    box-shadow: none;
+  }
+  .j-card.ghost .j-title { color: #7a68b8; font-size: 19px; }
+  .j-line { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+  .j-hook {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--purple-deep);
+    line-height: 1.3;
+    margin: 2px 0 10px;
+  }
+  .j-fee { font-weight: 700; font-size: 14.5px; color: var(--ink); margin-bottom: 6px; }
+  .j-stats { margin-bottom: 10px; }
+  .j-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px solid #efecf5;
+  }
+  .j-stat .v {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--purple-deep);
+    min-width: 44px;
+  }
+  .j-stat .k { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+
+  /* Timeline rail */
+  .rail { display: flex; align-items: flex-start; margin-top: 36px; position: relative; }
+  .rail::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 60px;
+    right: 60px;
+    height: 2px;
+    background: #d9d2ec;
+  }
+  .r-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .r-spacer { flex: 0 0 38px; }
+  .r-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid #b9aede;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .r-dot.active {
+    width: 16px; height: 16px;
+    background: var(--purple);
+    border-color: var(--purple);
+    box-shadow: 0 0 14px rgba(123, 59, 233, 0.65);
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .r-label {
+    font-size: 10px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #8d84a8;
+    line-height: 1.4;
+    max-width: 160px;
+  }
+  .r-cell.active .r-label { color: var(--purple-deep); }
+  .r-cap {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--purple-deep);
+    margin-top: 3px;
+  }
   .statement {
     text-align: center;
     font-style: italic;
@@ -494,51 +615,57 @@
 <!-- JOURNEY -->
 <div class="light">
   <div class="wrap">
-    <div class="kicker">Where You Are vs. Where You Need to Be</div>
+    <div class="eyebrow"><span>Where You Are</span><span class="vs">vs.</span><span class="need">Where You Need to Be</span></div>
     <h2 class="serif">Paid media is the entry point<span class="dot">.</span> Not the ceiling<span class="dot">.</span></h2>
-    <p class="lede">Most brands are stuck in the first box&hellip; and paying for it like it's a privilege.</p>
-    <p class="lede lede-2">Here is the way out, and where it can lead you.</p>
+    <p class="lede">Most brands are stuck in the first box. <strong>And they're paying for it like it's a privilege.</strong></p>
     <div class="journey">
       <div class="j-card legacy">
         <span class="j-pill">You Are Here</span>
         <div class="j-title">Legacy Paid Media</div>
         <ul>
           <li>Your agency earns more as you <strong>spend more</strong>, whether or not it works.</li>
-          <li><strong>Black-box fees.</strong> You never really know what you pay in markups.</li>
+          <li><strong>Black-box fees</strong> and markups you can't audit.</li>
           <li>Doing it yourself? Every platform reports its own truth, and <strong>you</strong> stitch it together.</li>
         </ul>
       </div>
-      <div class="j-arrow">&#8594;</div>
+      <div class="j-arrow solid">&#8594;</div>
       <div class="j-card here">
         <span class="j-pill">You Need to Be Here</span>
         <div class="j-title">DISTRIKT Paid Media</div>
         <div class="j-sub">Powered by KNVRT</div>
+        <div class="j-hook">100% of your ad spend buys ads.</div>
+        <div class="j-fee">One flat monthly fee.</div>
+        <div class="j-stats">
+          <div class="j-stat"><span class="v">$0</span><span class="k">in management fees</span></div>
+          <div class="j-stat"><span class="v">$0</span><span class="k">in markups</span></div>
+        </div>
         <ul>
-          <li><strong>One flat monthly fee</strong>, no matter how much you spend. Fully transparent.</li>
-          <li>KNVRT on your <strong>marketing data first</strong>: one holistic view across every channel.</li>
-          <li><strong>Humans execute</strong> every optimization by hand. No black boxes anywhere.</li>
+          <li>Every dollar streams into <strong>one intelligence layer</strong>, daily.</li>
+          <li><strong>Humans make every change</strong> by hand. No black boxes.</li>
         </ul>
       </div>
       <div class="j-arrow">&#8594;</div>
-      <div class="j-card">
-        <span class="j-pill">Next</span>
+      <div class="j-card ghost">
+        <span class="j-pill ghostpill">Next</span>
         <div class="j-title">Your Company Brain</div>
         <div class="j-sub">An Intelligence Core</div>
-        <ul>
-          <li>Full deployment across <strong>marketing, sales, operations, and data</strong>, combined into one intelligence layer your whole team works from.</li>
-          <li>Nothing gets rebuilt. The system that ran your media <strong>expands</strong> into the brain your company runs on.</li>
-        </ul>
+        <p class="j-line">One intelligence layer your whole company works from. Marketing, sales, operations.</p>
       </div>
       <div class="j-arrow">&#8594;</div>
-      <div class="j-card">
-        <span class="j-pill">Beyond</span>
+      <div class="j-card ghost">
+        <span class="j-pill ghostpill">Beyond</span>
         <div class="j-title">Agentic Architecture</div>
-        <ul>
-          <li><strong>AI agents and workflows</strong>, custom built into your business.</li>
-          <li>Built on DISTRIKT's proprietary <strong>Five Pillar Framework</strong>.</li>
-          <li>Strategically designed, trained, deployed, and cultivated, always with a <strong>human in the loop</strong>.</li>
-        </ul>
+        <p class="j-line">AI agents working inside your business. Built on our proprietary Five Pillar Framework.</p>
       </div>
+    </div>
+    <div class="rail">
+      <div class="r-cell" style="flex:1.08;"><span class="r-dot"></span><span class="r-label">Today</span></div>
+      <div class="r-spacer"></div>
+      <div class="r-cell active" style="flex:1.5;"><span class="r-dot active"></span><span class="r-label">Day One</span><span class="r-cap">The only thing you need today.</span></div>
+      <div class="r-spacer"></div>
+      <div class="r-cell" style="flex:0.95;"><span class="r-dot"></span><span class="r-label">Once the Foundation Is Set</span></div>
+      <div class="r-spacer"></div>
+      <div class="r-cell" style="flex:0.95;"><span class="r-dot"></span><span class="r-label">When You're Ready</span></div>
     </div>
     <div class="statement">The bottleneck is not your budget<span class="p">.</span> It is where your <span class="neon">intelligence</span> lives<span class="p">.</span></div>
   </div>
